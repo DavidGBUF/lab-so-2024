@@ -8,19 +8,19 @@
 static struct task_struct kth_arr[4];
 
 // long running function to be executed inside a thread, this will run for 30 secs. 
-int thread_function(void * idx) {
+int thread_function(void * arg) {
+  int pid = *(int *)arg;  // Recebe o PID como argumento
   unsigned int i = 0;
-  int t_id = * (int * ) idx;
 
   // kthread_should_stop call is important.
   while (!kthread_should_stop()) {
-    printk(KERN_INFO "Thread %d Still running...! %d secs\n", t_id, i);
+    printk(KERN_INFO "Thread %d (PID: %d) Still running...! %d secs\n", pid, current->pid, i); // Imprime o PID da thread atual (current->pid)
     i++;
     if (i == 30)
       break;
     msleep(1000);
   }
-  printk(KERN_INFO "thread %d stopped\n", t_id);
+  printk(KERN_INFO "thread %d stopped\n", pid);
   return 0;
 }
 
