@@ -11,11 +11,11 @@ static struct task_struct kth_arr[4];
 int thread_function(void * idx) {
  unsigned int i = 0;
  int t_id = * (int * ) idx;
- pid_t pid = get_pid(); // Obtem o PID da thread
+
 
  // kthread_should_stop call is important.
  while (!kthread_should_stop()) {
-  printk(KERN_INFO "Thread %d Still running...! %d secs, PID: %d\n", t_id, i, pid); // Imprime o PID
+  printk(KERN_INFO "Thread %d Still running...! %d secs, PID: %d\n", t_id, i); 
   i++;
   if (i == 30)
    break;
