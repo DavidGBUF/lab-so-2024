@@ -11,7 +11,7 @@ static struct task_struct kth_arr[4];
 int thread_function(void * idx) {
  unsigned int i = 0;
  int t_id = * (int * ) idx;
- pid_t pid = getpid(); // Obtem o PID da thread
+ pid_t pid = get_pid(); // Obtem o PID da thread
 
  // kthread_should_stop call is important.
  while (!kthread_should_stop()) {
