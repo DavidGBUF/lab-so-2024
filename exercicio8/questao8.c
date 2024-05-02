@@ -3,6 +3,7 @@
 #include<linux/kthread.h>    // included for threading related functions
 #include<linux/sched.h>      // included to create task_struct
 #include<linux/delay.h>      // included for the sleep/delay function in the thread
+#include <pthread.h>
 
 // array for task_struct to hold task info
 static struct task_struct kth_arr[4];
